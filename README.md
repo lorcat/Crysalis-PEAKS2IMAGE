@@ -1,2 +1,45 @@
-# Crysalis-PEAKS2IMAGE
-Jupyter notebook helping with preparation of publication quality data (overlay of indexed peaks on top of an oscillation image from a single crystal)
+# Crysalis-CIFOD
+Jupyter notebook processing Rigaku Crysalis ".cif_od" files.
+Can be used for single crystal data obtained at conventional and high pressure experiments.
+
+Files are uploaded into the notebook using an upload button. The code displays information
+regarding lattice parameters, volume for constrained and unconstraned unit cell, orientation matrix.
+
+## Operation
+The notebook works under windows. It can be simplified to the procedure:
+- Start with the [Jupyter-Notebook](./Crysalis_PEAKS2IMAGE.ipynb "Notebook")
+- Load a .tif file ([fabio library](https://github.com/silx-kit/fabio "fabio library at github"))
+- Adjust the presentation (palette, etc)
+- Open the Crysalis session
+    - Open peak table **pt e** command of Crysalis
+    - Adjust the peaks as integrated as you see fit. It would be advised to show the peaks which are presented on an oscillation image.
+      Cleaning/Filtering of the peaks is advisable
+    - Select **Coordinates->detector** radio button
+    - Push **Copy to clip** button
+- Switch back to the Jupyter-Notebook
+- Press **Clipboard polling->ON** 
+- The data should be loaded
+
+Since the Windows system clipboard is accessed via pywin32 module, it is suggested to avoid keeping clipboard polling for a long time. 
+
+## Installation
+Installation under [Anaconda](https://anaconda.org/ "Anaconda Site"):
+
+    conda install bokeh numpy pywin32 --yes
+    conda install -c conda-forge fabio ipywidgets --yes
+
+    # Jupyter Notebook
+    jupyter nbextension enable --py widgetsnbextension
+
+    # JupyterLab 1/2
+    conda install -c conda-forge nodejs --yes
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager
+    
+    #JupyterLab 3
+    conda install -n base -c conda-forge jupyterlab_widgets
+
+I would suggest to restart Jupyter lab after installation of all packages if it was running.
+If something does not work - 
+
+## Example
+![Prepared image](./example/example_of_output.png "Prepared image")
