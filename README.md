@@ -41,7 +41,7 @@ Installation under [Anaconda](https://anaconda.org/ "Anaconda Site"):
     conda install -n base -c conda-forge jupyterlab_widgets
 
 I would suggest to restart Jupyter lab after installation of all packages if it was running.
-If something does not work - 
+If something does not work - let me know.
 
 ## Example
 ![Prepared image](./example/example_of_output.png "Prepared image")
