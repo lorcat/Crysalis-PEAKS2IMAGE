@@ -14,11 +14,13 @@ The notebook works under windows. It can be simplified to the procedure:
     - Open peak table **pt e** command of Crysalis
     - Adjust the peaks as integrated as you see fit. It would be advised to show the peaks which are presented on an oscillation image.
       Cleaning/Filtering of the peaks is advisable
-    - Select **Coordinates->detector** radio button
+    - Select **Coordinates->detector** radio button as indicated in the dialog window below
     - Push **Copy to clip** button
 - Switch back to the Jupyter-Notebook
 - Press **Clipboard polling->ON** 
 - The data should be loaded
+
+![Crysalis Dialog](./example/example_crysalis_buttons.png "Crysalis dialog")
 
 Since the Windows system clipboard is accessed via pywin32 module, it is suggested to avoid keeping clipboard polling for a long time. 
 
