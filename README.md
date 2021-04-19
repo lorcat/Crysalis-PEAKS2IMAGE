@@ -1,4 +1,4 @@
-# Crysalis-CIFOD
+# Crysalis-PEAKS2IMAGE
 Jupyter notebook working in a tandem with [Crysalis](https://www.rigaku.com/de/products/smc/crysalis) - software used for single crystal data processing.
 Can be used for single crystal data obtained at conventional and high pressure experiments.
 
