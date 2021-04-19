@@ -1,5 +1,5 @@
 # Crysalis-CIFOD
-Jupyter notebook processing Rigaku Crysalis ".cif_od" files.
+Jupyter notebook working in a tandem with [Crysalis](https://www.rigaku.com/de/products/smc/crysalis) - software used for single crystal data processing.
 Can be used for single crystal data obtained at conventional and high pressure experiments.
 
 Files are uploaded into the notebook using an upload button. The code displays information
