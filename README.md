@@ -40,7 +40,29 @@ Installation under [Anaconda](https://anaconda.org/ "Anaconda Site"):
     #JupyterLab 3
     conda install -n base -c conda-forge jupyterlab_widgets
 
-I would suggest to restart Jupyter lab after installation of all packages if it was running.
+There are some steps which are required for additional configuration of Jupyter. These steps enable upload of larger files.
+I found the original discussion [here](https://github.com/jupyter-widgets/ipywidgets/issues/2522).
+
+    # under conda base or specific environment run
+    jupyter notebook --generate-config
+    
+    # under windows this will generate a config file in:
+    %userprofile%\.jupyter\jupyter_notebook_config.py
+
+    # open this file with your favorite editor
+    notepad++ %userprofile%\.jupyter\jupyter_notebook_config.py
+
+Then uncomment the parameters string:
+    
+    # c.NotebookApp.tornado_settings = {}
+
+Finally change the parameter string to:
+
+    c.NotebookApp.tornado_settings = {"websocket_max_message_size": 100 * 1024 * 1024}
+
+Saving the Jupyter configuration file will finish the job.
+
+I suggest restarting Jupyter lab after installation of all packages as well after the change of the configuration file.
 If something does not work - let me know.
 
 ## Example
