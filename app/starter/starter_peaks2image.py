@@ -542,11 +542,19 @@ class Starter:
         def update(change):
             future.set_result(change.new)
 
-            fn = tuple(change.new.keys())[0]
-            self.last_data = change.new
+            fn = ""
+            tdata = None
+
+            if isinstance(change.new, dict):
+                fn = tuple(change.new.keys())[0]
+                tdata = change.new
+            elif isinstance(change.new, list) or isinstance(change.new, tuple):
+                fn = tuple(change.new[0].keys())[0]
+                tdata = change.new[0]
+            self.last_data = tdata
 
             # process data separately
-            th = threading.Thread(target=self.process_newfile, args=[fn, change.new[fn]])
+            th = threading.Thread(target=self.process_newfile, args=[fn, tdata])
             th.setDaemon(True)
             th.start()
 
@@ -576,11 +584,20 @@ class Starter:
 
         #self.debug(f"Writing a temporary file {self.tmp_file}")
 
-        tif = fabio.tifimage.TifImage()
-        img_data = tif.read(self.tmp_file)
+        # tif = fabio.tifimage.TifImage()
+        with fabio.openimage.openimage(self.tmp_file) as fh:
+            img_data = fh.data
+
+        #img_data = tif.read(self.tmp_file)
+
+        ave = np.average(img_data.data)
+
+        test_ave = np.copy(img_data)
+        test_ave[test_ave > ave] = 0
+        test_ave = np.average(test_ave)
 
         mi, ma = np.min(img_data.data), np.max(img_data.data)
-        ave = np.average(img_data.data)
+
 
         palette = self.DEF_PALETTE
         binvert_colormap = self.cb_pallete.value
@@ -600,13 +617,13 @@ class Starter:
 
             # update range intensity
             if isinstance(self.range_intensity, FloatRangeSlider):
-                self.range_intensity.min, self.range_intensity.max = mi, ma
+                self.range_intensity.min, self.range_intensity.max = mi, test_ave * 10
 
                 if self.range_intensity_min is None or self.range_intensity_min<mi:
                     self.range_intensity_min = mi
 
-                if self.range_intensity_max is None or self.range_intensity_max > ma:
-                    self.range_intensity_max = ma
+                if self.range_intensity_max is None or self.range_intensity_max > ave:
+                    self.range_intensity_max = test_ave * 10
 
                 self.range_intensity.value = [self.range_intensity_min, self.range_intensity_max]
 
@@ -676,9 +693,13 @@ class Starter:
             else:
                 self.bc.points = []
 
-            # self.debug("Sending data into a graph")
-            self.bc.add_graph(copy.deepcopy(img_data), palette, imin, imax, binvert_colormap)
-            # self.debug(f"Data added {img_data.data}")
+            #self.debug("Sending data into a graph")
+            #self.debug(f"Data added {img_data.shape}")
+            #self.debug(f"Palette: {palette}")
+            #self.debug(f"Min/Max: {imin}/{imax}")
+            #self.debug(f"Colormap inversion: {binvert_colormap}")
+
+            self.bc.add_graph(np.copy(img_data), palette, imin, imax, binvert_colormap)
 
     def debug(self, msg):
         """

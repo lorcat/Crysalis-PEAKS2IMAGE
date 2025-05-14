@@ -232,7 +232,7 @@ class BokehCtrl:
 
                         if self._test_captiondata() and self.cap_visible:
                             labels = LabelSet(x='x', y='y', text='names',
-                                              x_offset=self.cap_xoffset, y_offset=self.cap_yoffset, source=pts_data, render_mode='canvas', visible=self.cap_visible,
+                                              x_offset=self.cap_xoffset, y_offset=self.cap_yoffset, source=pts_data, visible=self.cap_visible, # render_mode='canvas',
                                               text_color=self.cap_color, text_font=self.cap_font, text_font_size=self.cap_fontsize,
                                               background_fill_color=self.cap_bkgcolor)
 
