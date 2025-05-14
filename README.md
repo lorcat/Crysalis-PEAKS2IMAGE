@@ -22,9 +22,16 @@ The notebook works under windows. It can be simplified to the procedure:
 
 ![Crysalis Dialog](./example/example_crysalis_buttons.png "Crysalis dialog")
 
-Since the Windows system clipboard is accessed via pywin32 module, it is suggested to avoid keeping clipboard polling for a long time. 
+Since the Windows system clipboard is accessed via pywin32 module, it is suggested to avoid keeping clipboard polling for a long time.
 
 ## Installation
+### Newer installation under python virtual environment
+Added a [requirements file](requirements.txt) for pip installation with python 3.11.9.
+It can be adjusted to work with miniconda.
+
+Additionally, please check the instructions for generation of jupyter configuration file described in anaconda section. 
+
+### Older instruction for installation with Anaconda
 Installation under [Anaconda](https://anaconda.org/ "Anaconda Site"):
 
     conda install bokeh numpy pywin32 --yes
