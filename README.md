@@ -31,6 +31,8 @@ It can be adjusted to work with miniconda.
 
 Additionally, please check the instructions for generation of jupyter configuration file described in a section below. 
 
+A virtual environment build for _win11_ can be downloaded from the [DESY gitlab](https://gitlab.desy.de/konstantin.glazyrin/crysalis-peaks2image) 
+
 ### Older instruction for installation with Anaconda
 Installation under [Anaconda](https://anaconda.org/ "Anaconda Site"):
 
