@@ -29,7 +29,7 @@ Since the Windows system clipboard is accessed via pywin32 module, it is suggest
 Added a [requirements file](requirements.txt) for pip installation with python 3.11.9.
 It can be adjusted to work with miniconda.
 
-Additionally, please check the instructions for generation of jupyter configuration file described in anaconda section. 
+Additionally, please check the instructions for generation of jupyter configuration file described in a section below. 
 
 ### Older instruction for installation with Anaconda
 Installation under [Anaconda](https://anaconda.org/ "Anaconda Site"):
@@ -47,6 +47,7 @@ Installation under [Anaconda](https://anaconda.org/ "Anaconda Site"):
     #JupyterLab 3
     conda install -n base -c conda-forge jupyterlab_widgets
 
+### Important steps for uploading files into Jupyter using ipywidgets
 There are some steps which are required for additional configuration of Jupyter. These steps enable upload of larger files.
 I found the original discussion [here](https://github.com/jupyter-widgets/ipywidgets/issues/2522).
 
